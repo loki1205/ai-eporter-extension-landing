@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Privacy Policy — Page Exporter</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+
+      font-family:
+        'Inter',
+        sans-serif;
+
+      background:
+        #070b16;
+
+      color: white;
+
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       BACKGROUND
+    ========================= */
+
+    .bg {
+
+      position: fixed;
+      inset: 0;
+
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(37,99,235,0.35),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at bottom left,
+          rgba(124,58,237,0.35),
+          transparent 35%
+        );
+
+      z-index: -1;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .navbar {
+
+      width: 100%;
+
+      border-bottom:
+        1px solid rgba(255,255,255,0.08);
+
+      backdrop-filter:
+        blur(12px);
+
+      position: sticky;
+      top: 0;
+
+      background:
+        rgba(7,11,22,0.65);
+
+      z-index: 999;
+    }
+
+    .nav-inner {
+
+      max-width: 1100px;
+
+      margin: auto;
+
+      padding:
+        18px 24px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo {
+
+      width: 48px;
+      height: 48px;
+
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #06b6d4,
+          #7c3aed
+        );
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 22px;
+
+      box-shadow:
+        0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .brand h2 {
+
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .brand p {
+
+      font-size: 12px;
+      color:
+        rgba(255,255,255,0.6);
+    }
+
+    /* =========================
+       MAIN CONTENT
+    ========================= */
+
+    .container {
+
+      max-width: 900px;
+
+      margin: auto;
+
+      padding:
+        80px 24px 120px;
+    }
+
+    .badge {
+
+      display: inline-block;
+
+      padding:
+        10px 16px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,0.08);
+
+      border:
+        1px solid rgba(255,255,255,0.08);
+
+      color:
+        rgba(255,255,255,0.75);
+
+      font-size: 14px;
+
+      margin-bottom: 26px;
+    }
+
+    h1 {
+
+      font-size: 58px;
+
+      line-height: 1.05;
+
+      font-weight: 900;
+
+      letter-spacing:
+        -2px;
+
+      margin-bottom: 24px;
+    }
+
+    .gradient {
+
+      background:
+        linear-gradient(
+          135deg,
+          #06b6d4,
+          #8b5cf6
+        );
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .intro {
+
+      font-size: 18px;
+
+      line-height: 1.9;
+
+      color:
+        rgba(255,255,255,0.72);
+
+      margin-bottom: 60px;
+    }
+
+    /* =========================
+       CARD
+    ========================= */
+
+    .card {
+
+      background:
+        rgba(255,255,255,0.05);
+
+      border:
+        1px solid rgba(255,255,255,0.08);
+
+      border-radius: 28px;
+
+      padding: 36px;
+
+      margin-bottom: 28px;
+
+      backdrop-filter:
+        blur(18px);
+
+      box-shadow:
+        0 18px 50px rgba(0,0,0,0.35);
+    }
+
+    .card h2 {
+
+      font-size: 28px;
+
+      margin-bottom: 18px;
+    }
+
+    .card p {
+
+      color:
+        rgba(255,255,255,0.72);
+
+      line-height: 1.9;
+
+      margin-bottom: 18px;
+    }
+
+    .card ul {
+
+      padding-left: 22px;
+    }
+
+    .card li {
+
+      margin-bottom: 12px;
+
+      color:
+        rgba(255,255,255,0.72);
+
+      line-height: 1.8;
+    }
+
+    .highlight {
+
+      color: white;
+      font-weight: 600;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+
+      padding:
+        40px 24px;
+
+      text-align: center;
+
+      border-top:
+        1px solid rgba(255,255,255,0.08);
+
+      color:
+        rgba(255,255,255,0.5);
+
+      font-size: 14px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 768px) {
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .card {
+        padding: 28px;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="bg"></div>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar">
+
+    <div class="nav-inner">
+
+      <div class="brand">
+
+        <div class="logo">
+          ⚡
+        </div>
+
+        <div>
+
+          <h2>Page Exporter</h2>
+
+          <p>
+            Privacy Policy
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+  <!-- CONTENT -->
+
+  <main class="container">
+
+    <div class="badge">
+      🔒 Privacy-first browser extension
+    </div>
+
+    <h1>
+
+      Privacy Policy for
+
+      <span class="gradient">
+        Page Exporter
+      </span>
+
+    </h1>
+
+    <p class="intro">
+
+      Page Exporter is designed with privacy as a core principle.
+      All webpage processing happens locally in your browser.
+      No exported content is transmitted, stored, or shared externally.
+
+    </p>
+
+    <!-- SECTION -->
+
+    <div class="card">
+
+      <h2>Data Collection</h2>
+
+      <p>
+
+        Page Exporter does not collect, store,
+        sell, or share personal data.
+
+      </p>
+
+      <p>
+
+        The extension temporarily accesses webpage
+        content only to generate exports requested
+        directly by the user.
+
+      </p>
+
+    </div>
+
+    <!-- SECTION -->
+
+    <div class="card">
+
+      <h2>How the Extension Works</h2>
+
+      <p>
+
+        The extension reads visible webpage content
+        locally in the browser and converts it into:
+
+      </p>
+
+      <ul>
+
+        <li>TXT files</li>
+        <li>Markdown files</li>
+        <li>DOCX documents</li>
+
+      </ul>
+
+      <p>
+
+        No webpage content leaves the user's device.
+
+      </p>
+
+    </div>
+
+    <!-- SECTION -->
+
+    <div class="card">
+
+      <h2>Permissions Used</h2>
+
+      <ul>
+
+        <li>
+
+          <span class="highlight">
+            activeTab
+          </span>
+
+          — used to access the currently active webpage
+          after explicit user interaction.
+
+        </li>
+
+        <li>
+
+          <span class="highlight">
+            scripting
+          </span>
+
+          — used to extract visible webpage content
+          for formatting and export generation.
+
+        </li>
+
+      </ul>
+
+    </div>
+
+    <!-- SECTION -->
+
+    <div class="card">
+
+      <h2>Third-Party Services</h2>
+
+      <p>
+
+        Page Exporter does not use:
+        
+      </p>
+
+      <ul>
+
+        <li>analytics services</li>
+        <li>tracking scripts</li>
+        <li>advertising networks</li>
+        <li>external APIs</li>
+        <li>remote code execution</li>
+
+      </ul>
+
+    </div>
+
+    <!-- SECTION -->
+
+    <div class="card">
+
+      <h2>Contact</h2>
+
+      <p>
+
+        For privacy-related questions,
+        contact:
+
+      </p>
+
+      <p class="highlight">
+
+        your@email.com
+
+      </p>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    © 2026 Page Exporter — Privacy First.
+
+  </footer>
+
+</body>
+</html>
