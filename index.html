@@ -1,198 +1,713 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AI Exporter – Turn Webpages into Clean Notes</title>
 
-<style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0b0f19;
-    color: white;
-    line-height: 1.5;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  .container {
-    max-width: 900px;
-    margin: auto;
-    padding: 60px 20px;
-  }
+  <title>Page Exporter</title>
 
-  h1 {
-    font-size: 42px;
-    margin-bottom: 10px;
-  }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  .subtitle {
-    font-size: 18px;
-    color: #b3b3b3;
-    margin-bottom: 30px;
-  }
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
 
-  .cta {
-    display: inline-block;
-    background: #4f46e5;
-    padding: 12px 20px;
-    border-radius: 10px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-  }
+  <style>
 
-  .section {
-    margin-top: 60px;
-  }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  .card {
-    background: #151b2c;
-    padding: 20px;
-    border-radius: 12px;
-    margin-top: 15px;
-  }
+    body {
 
-  ul {
-    padding-left: 20px;
-  }
+      font-family:
+        'Inter',
+        sans-serif;
 
-  .muted {
-    color: #9aa4b2;
-  }
+      background:
+        #070b16;
 
-  footer {
-    margin-top: 80px;
-    font-size: 12px;
-    color: #666;
-    text-align: center;
-  }
+      color: white;
 
-  .highlight {
-    color: #7c83ff;
-  }
+      overflow-x: hidden;
+    }
 
-  img {
-    width: 100%;
-    border-radius: 12px;
-    margin-top: 20px;
-  }
-</style>
+    /* =========================
+       BACKGROUND
+    ========================= */
+
+    .bg {
+
+      position: fixed;
+      inset: 0;
+
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(37,99,235,0.35),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at bottom left,
+          rgba(124,58,237,0.35),
+          transparent 35%
+        );
+
+      z-index: -1;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .navbar {
+
+      width: 100%;
+
+      border-bottom:
+        1px solid rgba(255,255,255,0.08);
+
+      backdrop-filter:
+        blur(10px);
+
+      position: sticky;
+      top: 0;
+
+      background:
+        rgba(7,11,22,0.6);
+
+      z-index: 999;
+    }
+
+    .nav-inner {
+
+      max-width: 1200px;
+
+      margin: auto;
+
+      padding:
+        18px 24px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo {
+
+      width: 48px;
+      height: 48px;
+
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #06b6d4,
+          #7c3aed
+        );
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 22px;
+
+      box-shadow:
+        0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .brand h2 {
+
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .brand p {
+
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .download-btn {
+
+      border: none;
+
+      padding:
+        14px 22px;
+
+      border-radius: 14px;
+
+      background: white;
+      color: black;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: 0.2s ease;
+    }
+
+    .download-btn:hover {
+
+      transform:
+        translateY(-2px);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+
+      max-width: 1200px;
+
+      margin: auto;
+
+      padding:
+        100px 24px;
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 80px;
+
+      align-items: center;
+    }
+
+    .badge {
+
+      display: inline-block;
+
+      padding:
+        10px 16px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,0.08);
+
+      border:
+        1px solid rgba(255,255,255,0.08);
+
+      color:
+        rgba(255,255,255,0.75);
+
+      font-size: 14px;
+
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+
+      font-size: 64px;
+
+      line-height: 1.05;
+
+      font-weight: 900;
+
+      letter-spacing:
+        -2px;
+    }
+
+    .gradient {
+
+      background:
+        linear-gradient(
+          135deg,
+          #06b6d4,
+          #8b5cf6
+        );
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+
+      margin-top: 28px;
+
+      color:
+        rgba(255,255,255,0.7);
+
+      font-size: 18px;
+
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+
+      display: flex;
+      gap: 14px;
+
+      margin-top: 40px;
+    }
+
+    .primary-btn {
+
+      border: none;
+
+      padding:
+        16px 24px;
+
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #06b6d4,
+          #7c3aed
+        );
+
+      color: white;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: 0.2s ease;
+    }
+
+    .primary-btn:hover {
+
+      transform:
+        translateY(-2px);
+    }
+
+    .secondary-btn {
+
+      border:
+        1px solid rgba(255,255,255,0.1);
+
+      padding:
+        16px 24px;
+
+      border-radius: 16px;
+
+      background:
+        rgba(255,255,255,0.05);
+
+      color: white;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: 0.2s ease;
+    }
+
+    .secondary-btn:hover {
+
+      background:
+        rgba(255,255,255,0.08);
+    }
+
+    /* =========================
+       MOCKUP
+    ========================= */
+
+    .mockup {
+
+      background:
+        rgba(255,255,255,0.06);
+
+      border:
+        1px solid rgba(255,255,255,0.08);
+
+      border-radius: 28px;
+
+      padding: 24px;
+
+      backdrop-filter:
+        blur(20px);
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .window-bar {
+
+      display: flex;
+      gap: 8px;
+
+      margin-bottom: 22px;
+    }
+
+    .dot {
+
+      width: 12px;
+      height: 12px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,0.3);
+    }
+
+    .mock-card {
+
+      background:
+        rgba(255,255,255,0.05);
+
+      border-radius: 20px;
+
+      padding: 20px;
+
+      margin-bottom: 16px;
+    }
+
+    .mock-title {
+
+      font-size: 18px;
+      font-weight: 700;
+
+      margin-bottom: 12px;
+    }
+
+    .line {
+
+      height: 10px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,0.08);
+
+      margin-bottom: 12px;
+    }
+
+    .line.short {
+      width: 60%;
+    }
+
+    .line.medium {
+      width: 80%;
+    }
+
+    /* =========================
+       FEATURES
+    ========================= */
+
+    .features {
+
+      max-width: 1200px;
+
+      margin: auto;
+
+      padding:
+        40px 24px 120px;
+    }
+
+    .section-title {
+
+      text-align: center;
+
+      font-size: 42px;
+
+      font-weight: 800;
+
+      margin-bottom: 60px;
+    }
+
+    .feature-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 24px;
+    }
+
+    .feature-card {
+
+      background:
+        rgba(255,255,255,0.05);
+
+      border:
+        1px solid rgba(255,255,255,0.08);
+
+      border-radius: 24px;
+
+      padding: 28px;
+
+      backdrop-filter:
+        blur(14px);
+
+      transition: 0.2s ease;
+    }
+
+    .feature-card:hover {
+
+      transform:
+        translateY(-4px);
+
+      background:
+        rgba(255,255,255,0.07);
+    }
+
+    .feature-icon {
+
+      width: 54px;
+      height: 54px;
+
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #06b6d4,
+          #7c3aed
+        );
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 22px;
+
+      margin-bottom: 18px;
+    }
+
+    .feature-card h3 {
+
+      font-size: 20px;
+
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+
+      color:
+        rgba(255,255,255,0.7);
+
+      line-height: 1.7;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+
+      padding:
+        40px 24px;
+
+      text-align: center;
+
+      border-top:
+        1px solid rgba(255,255,255,0.08);
+
+      color:
+        rgba(255,255,255,0.5);
+
+      font-size: 14px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .hero {
+
+        grid-template-columns:
+          1fr;
+
+        padding:
+          80px 24px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .feature-grid {
+
+        grid-template-columns:
+          1fr;
+      }
+    }
+
+  </style>
+
 </head>
 
 <body>
 
-<div class="container">
+  <div class="bg"></div>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar">
+
+    <div class="nav-inner">
+
+      <div class="brand">
+
+        <div class="logo">
+          ⚡
+        </div>
+
+        <div>
+
+          <h2>Page Exporter</h2>
+
+          <p>
+            AI-ready webpage exports
+          </p>
+
+        </div>
+
+      </div>
+
+      <button class="download-btn">
+        Download Extension
+      </button>
+
+    </div>
+
+  </nav>
 
   <!-- HERO -->
-  <h1>Turn messy webpages into <span class="highlight">clean notes</span></h1>
 
-  <p class="subtitle">
-    AI Exporter is a lightweight Chrome extension that extracts webpage content, cleans it, and optionally formats it using AI (Gemini).
-  </p>
+  <section class="hero">
 
-  <!-- FIXED IMAGE PATH -->
-  <img src="screenshot.png" alt="AI Exporter Screenshot" />
+    <div>
 
-  <!-- PROBLEM -->
-  <div class="section">
-    <h2>The problem</h2>
+      <div class="badge">
+        ✨ Export any webpage instantly
+      </div>
 
-    <div class="card">
-      <p class="muted">
-        Webpages are often cluttered and hard to read:
-      </p>
+      <h1>
 
-      <ul>
-        <li>ads and distractions</li>
-        <li>unstructured content</li>
-        <li>hard-to-copy formatting</li>
-      </ul>
-    </div>
-  </div>
+        Turn webpages into
 
-  <!-- SOLUTION -->
-  <div class="section">
-    <h2>The solution</h2>
+        <span class="gradient">
+          clean knowledge files
+        </span>
 
-    <div class="card">
+      </h1>
+
       <p>
-        AI Exporter extracts only the meaningful content from any webpage.
+
+        Export authenticated webpages into beautifully formatted TXT,
+        Markdown, and DOCX files — ready for ChatGPT, Claude, Notion,
+        research, and documentation workflows.
+
       </p>
 
-      <p class="muted">
-        Optionally, Gemini AI can restructure it into clean notes.
-      </p>
+      <div class="hero-buttons">
+
+        <button class="primary-btn">
+          Get Extension
+        </button>
+
+      </div>
+
     </div>
-  </div>
+
+    <!-- MOCKUP -->
+
+    <div class="mockup">
+
+      <img src="screenshot.png" alt="Mockup" style="width: 100%; border-radius: 16px;" />
+
+    </div>
+
+  </section>
 
   <!-- FEATURES -->
-  <div class="section">
-    <h2>Features</h2>
 
-    <div class="card">
-      <ul>
-        <li>One-click webpage extraction</li>
-        <li>Removes clutter automatically</li>
-        <li>Optional AI formatting (Gemini API)</li>
-        <li>Download as TXT</li>
-        <li>Works on most websites</li>
-      </ul>
+  <section class="features">
+
+    <h2 class="section-title">
+      Built for modern workflows
+    </h2>
+
+    <div class="feature-grid">
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          📄
+        </div>
+
+        <h3>Clean Exports</h3>
+
+        <p>
+
+          Automatically preserves headings, lists,
+          paragraphs, and tables for structured exports.
+
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          🔒
+        </div>
+
+        <h3>Works on Private Pages</h3>
+
+        <p>
+
+          Export authenticated content from dashboards,
+          internal tools, documentation systems, and more.
+
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          ⚡
+        </div>
+
+        <h3>Instant Formatting</h3>
+
+        <p>
+
+          Convert webpages into TXT, Markdown, or DOCX
+          with one click directly from your browser.
+
+        </p>
+
+      </div>
+
     </div>
-  </div>
 
-  <!-- HOW IT WORKS -->
-  <div class="section">
-    <h2>How it works</h2>
+  </section>
 
-    <div class="card">
-      <ol>
-        <li>Open any webpage</li>
-        <li>Click extension icon</li>
-        <li>Copy or download clean text</li>
-        <li>Optionally format using AI</li>
-      </ol>
-    </div>
-  </div>
-
-  <!-- WHO IT IS FOR -->
-  <div class="section">
-    <h2>Who it is for</h2>
-
-    <div class="card">
-      <ul>
-        <li>Students</li>
-        <li>Developers</li>
-        <li>Writers</li>
-        <li>Researchers</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- TRANSPARENCY -->
-  <div class="section">
-    <h2>Note</h2>
-
-    <div class="card">
-      <p class="muted">
-        AI features require a user-provided Gemini API key.
-        No data is collected or sent to external servers by this extension.
-      </p>
-    </div>
-  </div>
-
-  <!-- CTA -->
-  <div class="section" style="text-align:center;">
-    <h2>Make reading the web easier</h2>
-    <p class="muted">Simple. Fast. Lightweight.</p>
-
-    <a class="cta" href="#">Buy Extension on Flippa</a>
-  </div>
+  <!-- FOOTER -->
 
   <footer>
-    AI Exporter is an independent tool and is not affiliated with Google or Gemini.
-  </footer>
 
-</div>
+    Built for researchers, developers,
+    analysts, and AI workflows.
+
+  </footer>
 
 </body>
 </html>
